@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Third</title>
+        <link rel="stylesheet" href="style.css">
+        <script>
+
+            window.onload = function(){
+                var querystring = window.location.search;
+                var urlparams = new URLSearchParams(querystring);
+                var imgName = urlparams.get('name');
+                var x = document.createElement('IMG');
+                x.setAttribute("class", "padding")
+                x.setAttribute("src", imgName);
+                x.setAttribute("width", "304");
+                x.setAttribute("height","228");
+                x.setAttribute("alt", "Data Analytics");
+                document.body.appendChild(x);
+                
+            }
+        </script>
+                
+        </head>
+        <body>
+        <h1 class="thanks">Thank You</h1>
+        </body>
+        </html>
