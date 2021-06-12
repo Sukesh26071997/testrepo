@@ -1,42 +1,39 @@
 <html>
-    <head>
-        <title>Second</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>
-            var globalsrc;
-            function getCurrentSrc(currentVal){
-                globalsrc=currentVal.src;
-            }
-            function thankJs(){
-                if(globalsrc==undefined){
-                    alert("Please select an image");
-                }else{
+<head>
+    <title>Second</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        var globalsrc;
+        function getCurrentSrc(currentVal){
+            globalsrc=currentVal.src;
+        }
+        function thankJs(){
+            if(globalsrc==undefined){
+                alert("Please select an image");
+            }else{
                 document.location.href='thank_you.html?name=' + globalsrc;
-                }
             }
-        </script>
-        </head>
-        <body>
-           
-            <div class="images" style="padding:80px;">
-                <h1 class="text">Please select an image and click Next</h1>
-                <img id='1' name="img1" class="column" src="img1.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
-                <img id='1' name="img2" class="column" src="img2.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
-                <img id='1' name="img3" class="column" src="img3.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
-                <img id='1' name="img4" class="column" src="img4.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
-                <img id='1' name="img5" class="column" src="img5.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
-             </div> 
-             <button name="next" id="next" class="button" onclick="thankJs()">Next</button>      
-        </body>
-        <script>
-        $(function () {
-    $("img").on("click",function(){
-        $(this).addClass('active_img')
-    .siblings()
-    .removeClass('active_img'); 
-    })
-});
-
-        </script>
-        </html>
+        }
+    </script>
+</head>
+<body>
+<div class="images" style="padding:80px;">
+    <h1 class="text">Please select an image and click Next</h1>
+    <title>Second</title>
+    <img name="img1" class="column" src="img1.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
+    <img name="img2" class="column" src="img2.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
+    <img name="img3" class="column" src="img3.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
+    <img name="img4" class="column" src="img4.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
+    <img name="img5" class="column" src="img5.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
+</div>
+<button onclick="thankJs()">Next</button>
+</body>
+<script>
+    $(function () {
+        $("img").on("click",function(){
+            $(this).addClass('active_img').siblings().removeClass('active_img');
+        })
+    });
+</script>
+</html>
