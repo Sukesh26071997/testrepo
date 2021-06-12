@@ -1,5 +1,108 @@
-
-
-<form action="first.html?">
-<input type="submit" id="name" name="form" value="first">
-</form>
+<html>
+<head>
+    <title>First</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <title>First</title>
+    <h2>Welcome</h2>
+    <div id="error"></div>
+    <form action="second.html" id="myform" onsubmit = "return validate();">
+        <input type="text" id="name" placeholder="Name"><br><br>
+        <input type="text" id="email" placeholder="Email"><br><br>
+        <input type="text" id="telphone" placeholder="Mobile" pattern="[0-9]{10}" maxlength="10"><br><br>
+        <h4>Please select your DOB:</h4>
+        <br>
+        <label class="year-field">Year*</label>
+        <label class="month-field"  style="padding-left: 25px;">Month*</label>
+        <label class="day-field" style="padding-left: 25px;">Day*</label><br>
+        <select id="year"></select>
+        <select id="month"></select>
+        <select id="day"></select>
+        <br><br>
+        <h4>Please select your gender:</h4>
+        </p><br>
+        <input type="radio" id="male" name="gender" value="male">Male<br><br>
+        <input type="radio" id="female" name="gender" value="female">Female<br><br>
+        <input type="radio" id="other" name="gender" value="other">Other<br><br>
+        <input type="submit"></input>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    function validate(){
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("telphone").value;
+        var option=document.getElementsByName("gender");
+        var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+        if (pattern.test(name) || name.trim()== ""){
+            return showError("Please Enter valid Name");
+        } else if(email.indexOf("@") == -1 || email.trim() == ""){
+            return showError("Please Enter valid Email");
+        } else if(isNaN(phone) || phone.length != 10){
+            return showError("Please Enter valid Phone Number");
+        } else if ($("#day")[0].selectedIndex <= 0 || $("#month")[0].selectedIndex <= 0 || $("#year")[0].selectedIndex <= 0){
+            return showError("Please select dob");
+        } else  if (!(option[0].checked || option[1].checked || option[2].checked)) {
+            return showError("Please select your gender");
+        }
+        return true;
+    }
+    function showError(text) {
+        var error_message = document.getElementById("error");
+        error_message.style.padding = "10px";
+        error_message.innerHTML = text;
+        return false;
+    }
+    $(document).ready(function() {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        let qntYears = 70;
+        let selectYear = $("#year");
+        let selectMonth = $("#month");
+        let selectDay = $("#day");
+        let currentYear = new Date().getFullYear();
+        for (var y = 0; y < qntYears; y++) {
+            let date = new Date(currentYear);
+            let yearElem = document.createElement("option");
+            yearElem.value = currentYear
+            yearElem.textContent = currentYear;
+            selectYear.append(yearElem);
+            currentYear--;
+        }
+        for (var m = 0; m < 12; m++) {
+            let month = monthNames[m];
+            let monthElem = document.createElement("option");
+            monthElem.value = m;
+            monthElem.textContent = month;
+            selectMonth.append(monthElem);
+        }
+        var d = new Date();
+        var month = d.getMonth();
+        var year = d.getFullYear();
+        var day = d.getDate();
+        selectYear.val("");
+        selectYear.on("change", AdjustDays);
+        selectMonth.val("");
+        selectMonth.on("change", AdjustDays);
+        AdjustDays();
+        selectDay.val("")
+        function AdjustDays() {
+            var year = selectYear.val();
+            var month = parseInt(selectMonth.val()) + 1;
+            selectDay.empty();
+            var days = new Date(year, month, 0).getDate();
+            for (var d = 1; d <= days; d++) {
+                var dayElem = document.createElement("option");
+                dayElem.value = d;
+                dayElem.textContent = d;
+                selectDay.append(dayElem);
+            }
+        }
+    });
+</script>
+</html>
