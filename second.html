@@ -12,7 +12,7 @@
             if(globalsrc==undefined){
                 alert("Please select an image");
             }else{
-                document.location.href='thank_you.html?name=' + globalsrc;
+                document.location.href='thank_you.html?'
             }
         }
     </script>
@@ -27,7 +27,7 @@
     <img name="img4" class="column" src="img4.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
     <img name="img5" class="column" src="img5.jpg" width="200px" height="200px" onclick="getCurrentSrc(this)">
 </div>
-<button onclick="thankJs()">Next</button>
+<button class="button" id="next" onclick="thankJs()">Next</button>
 </body>
 <script>
     $(function () {
